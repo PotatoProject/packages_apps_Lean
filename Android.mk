@@ -121,6 +121,28 @@ LOCAL_JACK_COVERAGE_INCLUDE_FILTER := com.android.launcher3.*
 include $(BUILD_PACKAGE)
 
 #
+# Build rule for Lean Companion app
+#
+include $(CLEAR_VARS)
+
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_SRC_FILES := \
+    $(call all-java-files-under, companion/smartspace/src/main/java)
+
+LOCAL_RESOURCE_DIR := \
+    $(LOCAL_PATH)/companion/smartspace/src/main/res
+
+LOCAL_SDK_VERSION := current
+LOCAL_MIN_SDK_VERSION := 21
+LOCAL_PACKAGE_NAME := LeanCompanion
+LOCAL_PRIVILEGED_MODULE := true
+
+LOCAL_MANIFEST_FILE := companion/smartspace/src/main/AndroidManifest.xml
+
+include $(BUILD_PACKAGE)
+
+#
 # Launcher proto buffer jar used for development
 #
 include $(CLEAR_VARS)
