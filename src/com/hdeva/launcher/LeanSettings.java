@@ -59,7 +59,7 @@ public class LeanSettings {
     private static final boolean TOP_SEARCH_BAR_DEFAULT = true;
     private static final boolean PHYSICAL_ANIMATION_DEFAULT = true;
     private static final boolean TRANSPARENT_NAVIGATION_BAR_DEFAULT = false;
-    private static final boolean EXTRA_BOTTOM_PADDING_DEFAULT = false;
+    private static final boolean EXTRA_BOTTOM_PADDING_DEFAULT = true;
     private static final String GRID_COLUMNS_DEFAULT = "default";
     private static final String GRID_ROWS_DEFAULT = "default";
     private static final String HOTSEAT_ICONS_DEFAULTS = "default";
