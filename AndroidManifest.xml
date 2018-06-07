@@ -32,13 +32,13 @@
     name in the permissions. eq com.mypackage.permission.READ_SETTINGS
     -->
     <permission
-        android:name="${applicationId}.permission.READ_SETTINGS"
+        android:name="com.google.android.apps.nexuslauncher.permission.READ_SETTINGS"
         android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
         android:protectionLevel="normal"
         android:label="@string/permlab_read_settings"
         android:description="@string/permdesc_read_settings"/>
     <permission
-        android:name="${applicationId}.permission.WRITE_SETTINGS"
+        android:name="com.google.android.apps.nexuslauncher.permission.WRITE_SETTINGS"
         android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
         android:protectionLevel="signatureOrSystem"
         android:label="@string/permlab_write_settings"
@@ -46,15 +46,15 @@
 
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="${applicationId}.permission.READ_SETTINGS" />
-    <uses-permission android:name="${applicationId}.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="com.google.android.apps.nexuslauncher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.google.android.apps.nexuslauncher.permission.WRITE_SETTINGS" />
 
     <!-- Pixel -->
     <permission
-        android:name="${applicationId}.permission.QSB"
+        android:name="com.google.android.apps.nexuslauncher.permission.QSB"
         android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
         android:protectionLevel="signatureOrSystem"/>
-    <uses-permission android:name="${applicationId}.permission.QSB" />
+    <uses-permission android:name="com.google.android.apps.nexuslauncher.permission.QSB" />
 
     <!--<permission-->
         <!--android:name="com.google.android.apps.nexuslauncher.permission.QSB"-->
@@ -127,24 +127,24 @@
         </activity>
 
         <activity
-            android:name="com.hdeva.launcher.HideAppsActivity"
+            android:name="com.google.android.apps.nexuslauncher.HideAppsActivity"
             android:autoRemoveFromRecents="true"
             android:label="@string/hide_apps_title"
             android:theme="@style/SettingsTheme" />
 
         <activity
-            android:name="com.hdeva.launcher.IconPackListActivity"
+            android:name="com.google.android.apps.nexuslauncher.IconPackListActivity"
             android:autoRemoveFromRecents="true"
             android:label="@string/available_icon_packs"
             android:theme="@style/SettingsTheme" />
 
         <activity
-            android:name="com.hdeva.launcher.IconPickerActivity"
+            android:name="com.google.android.apps.nexuslauncher.IconPickerActivity"
             android:autoRemoveFromRecents="true"
             android:theme="@style/SettingsTheme" />
 
         <activity
-            android:name="com.hdeva.launcher.LeanTimeoutActivity"
+            android:name="com.google.android.apps.nexuslauncher.LeanTimeoutActivity"
             android:excludeFromRecents="true"
             android:screenOrientation="portrait"
             android:theme="@style/TimeoutTheme" />
@@ -156,10 +156,10 @@
         -->
         <provider
             android:name="com.android.launcher3.LauncherProvider"
-            android:authorities="${applicationId}.settings"
+            android:authorities="com.google.android.apps.nexuslauncher.settings"
             android:exported="true"
-            android:writePermission="${applicationId}.permission.WRITE_SETTINGS"
-            android:readPermission="${applicationId}.permission.READ_SETTINGS" />
+            android:writePermission="com.google.android.apps.nexuslauncher.permission.WRITE_SETTINGS"
+            android:readPermission="com.google.android.apps.nexuslauncher.permission.READ_SETTINGS" />
 
         <!--
         Pixel
@@ -176,12 +176,12 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.hdeva.launcher.LeanProxyReceiver"
-            android:permission="com.hdeva.launcher.COMPANION">
+            android:name="com.google.android.apps.nexuslauncher.LeanProxyReceiver"
+            android:permission="com.google.android.apps.nexuslauncher.COMPANION">
             <intent-filter>
-                <action android:name="com.hdeva.launcher.AT_A_GLANCE" />
-                <action android:name="com.hdeva.launcher.HIDE_AT_A_GLANCE_COMPANION" />
-                <action android:name="com.hdeva.launcher.OPEN_LEAN_SETTINGS" />
+                <action android:name="com.google.android.apps.nexuslauncher.AT_A_GLANCE" />
+                <action android:name="com.google.android.apps.nexuslauncher.HIDE_AT_A_GLANCE_COMPANION" />
+                <action android:name="com.google.android.apps.nexuslauncher.OPEN_LEAN_SETTINGS" />
             </intent-filter>
         </receiver>
         <receiver android:name="com.google.android.apps.nexuslauncher.qsb.OPAStatusReceiver" android:permission="android.permission.CAPTURE_AUDIO_HOTWORD">
@@ -196,12 +196,12 @@
         </receiver>
         <receiver android:name="com.google.android.apps.nexuslauncher.qsb.LongClickReceiver" />
         <provider
-            android:authorities="${applicationId}.appssearch"
+            android:authorities="com.google.android.apps.nexuslauncher.appssearch"
             android:exported="true"
             android:name="com.google.android.apps.nexuslauncher.search.AppSearchProvider" />
 
         <receiver
-            android:name="com.hdeva.launcher.LeanDeviceAdmin"
+            android:name="com.google.android.apps.nexuslauncher.LeanDeviceAdmin"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
@@ -261,7 +261,7 @@
 
     </application>
 
-    <permission android:name="com.hdeva.launcher.COMPANION"
+    <permission android:name="com.google.android.apps.nexuslauncher.COMPANION"
         android:protectionLevel="signature"
         android:label="@string/companion_app_permission_label"
         android:description="@string/companion_app_permission_description">

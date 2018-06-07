@@ -34,7 +34,6 @@ import com.android.launcher3.Utilities;
 import com.android.launcher3.compat.LauncherAppsCompat;
 import com.android.launcher3.dynamicui.WallpaperColorInfo;
 import com.android.launcher3.util.LooperExecutor;
-import com.google.firebase.crash.FirebaseCrash;
 
 public class LeanUtils {
 
@@ -208,11 +207,7 @@ public class LeanUtils {
     }
 
     public static void reportNonFatal(Throwable throwable) {
-        try {
-            FirebaseCrash.report(throwable);
-        } catch (Throwable inner) {
-            Log.e("Crashreporting", "Error trying to report non-fatal event");
-        }
+        Log.e("Crashreporting", "Error trying to report non-fatal event", throwable);
     }
 
     private static ComponentName adminComponent(Context context) {

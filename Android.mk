@@ -40,6 +40,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/res \
+    $(LOCAL_PATH)/inline-res \
     prebuilts/sdk/current/support/v7/recyclerview/res \
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
@@ -89,6 +90,7 @@ LOCAL_SRC_FILES := \
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/go/res \
     $(LOCAL_PATH)/res \
+    $(LOCAL_PATH)/inline-res \
     prebuilts/sdk/current/support/v7/recyclerview/res \
 
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
