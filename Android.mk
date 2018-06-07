@@ -17,7 +17,7 @@
 LOCAL_PATH := $(call my-dir)
 
 #
-# Build rule for Launcher3 app.
+# Build rule for Lean app.
 #
 include $(CLEAR_VARS)
 
@@ -56,9 +56,9 @@ LOCAL_AAPT_FLAGS := \
 
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
-LOCAL_PACKAGE_NAME := Launcher3
+LOCAL_PACKAGE_NAME := Lean
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := $(LOCAL_PATH)/AndroidManifest-common.xml
 
@@ -67,7 +67,7 @@ LOCAL_JACK_COVERAGE_INCLUDE_FILTER := com.android.launcher3.*
 include $(BUILD_PACKAGE)
 
 #
-# Build rule for Launcher3 Go app for Android Go devices.
+# Build rule for Lean Go app for Android Go devices.
 #
 include $(CLEAR_VARS)
 
@@ -106,9 +106,9 @@ LOCAL_AAPT_FLAGS := \
 
 LOCAL_SDK_VERSION := current
 LOCAL_MIN_SDK_VERSION := 21
-LOCAL_PACKAGE_NAME := Launcher3Go
+LOCAL_PACKAGE_NAME := LeanGo
 LOCAL_PRIVILEGED_MODULE := true
-LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3
+LOCAL_OVERRIDES_PACKAGES := Home Launcher2 Launcher3 Lean
 
 LOCAL_FULL_LIBS_MANIFEST_FILES := \
     $(LOCAL_PATH)/AndroidManifest.xml \
