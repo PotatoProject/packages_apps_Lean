@@ -349,7 +349,7 @@
                 android:title="@string/pref_icon_pack" />
 
             <SwitchPreference
-                android:defaultValue="false"
+                android:defaultValue="true"
                 android:key="pref_generate_adaptive_icons"
                 android:persistent="true"
                 android:summary="@string/generate_adaptive_icons_summary"

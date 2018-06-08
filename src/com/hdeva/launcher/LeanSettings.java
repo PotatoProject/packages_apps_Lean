@@ -80,7 +80,7 @@ public class LeanSettings {
     private static final boolean TWO_FINGER_DOWN_DEFAULT = true;
     private static final boolean BLACK_COLORS_DEFAULT = false;
     private static final boolean SHOW_CARET_DEFAULT = true;
-    private static final boolean GENERATE_ADAPTIVE_ICONS_DEFAULT = false;
+    private static final boolean GENERATE_ADAPTIVE_ICONS_DEFAULT = true;
     private static final boolean GENERATED_ADAPTIVE_BACKGROUND_DEFAULT = false;
     private static final boolean ALLOW_TWO_LINE_LABELS_DEFAULT = false;
     private static final boolean SHORTCUT_UNLOCKED_WIDGETS_DEFAULT = true;
