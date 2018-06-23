@@ -183,6 +183,14 @@
             android:key="pref_color_category"
             android:title="@string/color_category">
 
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="pref_system_colors"
+                android:persistent="true"
+                android:summary="@string/system_colors_title"
+                android:title="@string/system_colors_summary"
+                android:disableDependentsState="true" />
+
             <ListPreference
                 android:defaultValue="wallpaper"
                 android:entries="@array/theme_names"
@@ -190,14 +198,16 @@
                 android:key="pref_theme"
                 android:persistent="true"
                 android:summary="%s"
-                android:title="@string/theme_title" />
+                android:title="@string/theme_title"
+                android:dependency="pref_system_colors" />
 
             <SwitchPreference
                 android:defaultValue="false"
                 android:key="pref_black_colors"
                 android:persistent="true"
                 android:summary="@string/black_colors_summary"
-                android:title="@string/black_colors_title" />
+                android:title="@string/black_colors_title"
+                android:dependency="pref_system_colors" />
 
             <SwitchPreference
                 android:defaultValue="false"

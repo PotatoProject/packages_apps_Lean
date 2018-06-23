@@ -24,6 +24,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.SearchManager;
@@ -33,6 +34,7 @@ import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentCallbacks2;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
@@ -43,10 +45,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.database.ContentObserver;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,6 +60,7 @@ import android.os.StrictMode;
 import android.os.SystemClock;
 import android.os.Trace;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.text.Selection;
 import android.text.SpannableStringBuilder;
@@ -280,6 +285,8 @@ public class Launcher extends BaseActivity
     private LauncherAccessibilityDelegate mAccessibilityDelegate;
     private final Handler mHandler = new Handler();
     private boolean mHasFocus = false;
+    private Context mContext;
+    public int mCurrentUserId;
 
     private ObjectAnimator mScrimAnimator;
     private boolean mShouldFadeInScrim;
@@ -376,6 +383,10 @@ public class Launcher extends BaseActivity
         WallpaperColorInfo wallpaperColorInfo = WallpaperColorInfo.getInstance(this);
         wallpaperColorInfo.setOnThemeChangeListener(this);
         overrideTheme(wallpaperColorInfo.isDark(), wallpaperColorInfo.supportsDarkText());
+        mContext = this;
+        // Hack, figure out a way to find user id properly
+        mCurrentUserId = 0;
+        mCustomSettingsObserver.observe();
 
         super.onCreate(savedInstanceState);
 
@@ -496,8 +507,12 @@ public class Launcher extends BaseActivity
     }
 
     protected void overrideTheme(boolean isDark, boolean supportsDarkText) {
+        ContentResolver resolver = Launcher.this.getContentResolver();
+        boolean useSystemTheme = LeanSettings.shouldUseSystemColors(this);
+        int userThemeSetting = Settings.Secure.getIntForUser(resolver, Settings.Secure.SYSTEM_THEME_STYLE, 2, mCurrentUserId);
+        isDark = (isDark || (useSystemTheme && (userThemeSetting == 2 || userThemeSetting == 3)));
         if (isDark) {
-            if (LeanSettings.shouldUseBlackColors(this)) {
+            if (LeanSettings.shouldUseBlackColors(this) || (useSystemTheme && (userThemeSetting == 3))) {
                 setTheme(R.style.LauncherThemeBlack);
             } else {
                 setTheme(R.style.LauncherThemeDark);
@@ -1599,6 +1614,25 @@ public class Launcher extends BaseActivity
 
         if (mLauncherCallbacks != null) {
             mLauncherCallbacks.onDetachedFromWindow();
+        }
+    }
+
+    private CustomSettingsObserver mCustomSettingsObserver = new CustomSettingsObserver(mHandler);
+    private class CustomSettingsObserver extends ContentObserver {
+        CustomSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = Launcher.this.getContentResolver();
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.SYSTEM_THEME_STYLE), false, this, mCurrentUserId);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            WallpaperColorInfo wallpaperColorInfo = WallpaperColorInfo.getInstance(mContext);
+            overrideTheme(wallpaperColorInfo.isDark(), wallpaperColorInfo.supportsDarkText());
         }
     }
 
